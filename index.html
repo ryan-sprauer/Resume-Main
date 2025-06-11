@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryan Sprauer - Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom colors inspired by the request */
+        .bg-forest-green { background-color: #0d4b3f; } /* Darker, richer green */
+        .text-regular-blue { color: #2563eb; }
+        .hover\:text-regular-blue:hover { color: #1d4ed8; }
+        .border-regular-blue { border-color: #2563eb; }
+
+        /* General transition styles */
+        .details {
+            max-height: 1000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, padding 0.3s ease-in-out;
+            opacity: 1;
+        }
+        .details.hidden {
+            max-height: 0;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-top: 0;
+        }
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        /* Styles for Job Entry Accordion */
+        .job-entry h3 { cursor: pointer; }
+        .job-entry h3 .arrow.collapsed { transform: rotate(-90deg); }
+
+        /* Styles for Skill Card Accordion */
+        .skill-card { cursor: pointer; }
+        .skill-card.open .arrow { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto max-w-7xl my-0 sm:my-12 p-0">
+        <div class="bg-white shadow-2xl rounded-lg overflow-hidden lg:grid lg:grid-cols-12">
+
+            <!-- Left Sidebar (Column 1) -->
+            <aside class="lg:col-span-4 bg-forest-green text-white p-8 relative">
+                <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <div class="w-32 h-32 rounded-full mb-6 overflow-hidden shadow-lg border-4 border-white">
+                        <img src="https://res.cloudinary.com/daafhagfc/image/upload/v1749675551/503380033_23915778681385832_206740349067749214_n_p1wv70.jpg" alt="Ryan Sprauer" class="w-full h-full object-cover">
+                    </div>
+                    <h1 class="text-4xl font-bold">Ryan Sprauer</h1>
+                    <h2 class="text-lg text-gray-300 mt-1">Healthcare & Safety Professional</h2>
+                </div>
+
+                <div class="mt-10">
+                    <h3 class="text-xl font-semibold border-b-2 border-gray-500 pb-2 mb-4">CONTACT</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <svg class="w-6 h-6 mr-3 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>(509) 393-9511</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-6 h-6 mr-3 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <span class="truncate">rsprauer4275@yahoo.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-6 h-6 mr-3 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>Yakima, WA 98908</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-10">
+                    <h3 class="text-xl font-semibold border-b-2 border-gray-500 pb-2 mb-4">SKILLS</h3>
+                    <div class="space-y-3" id="skills-container">
+                        <!-- Skills cards will be injected by JS -->
+                    </div>
+                </div>
+
+                <div class="mt-10">
+                    <h3 class="text-xl font-semibold border-b-2 border-gray-500 pb-2">CERTIFICATIONS</h3>
+                    <ul class="mt-4 space-y-2 text-gray-300 list-disc list-inside">
+                        <li>Certified Nursing Assistant (CNA)</li>
+                        <li>Certified Phlebotomist</li>
+                        <li>Certified Peer Counselor</li>
+                        <li>Nurse Delegated Medication Tech</li>
+                        <li>CPR/First Aid</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Right Content (Column 2) -->
+            <main class="lg:col-span-8 p-8 md:p-12">
+                <section>
+                    <h3 class="text-3xl font-bold text-regular-blue border-b-4 border-regular-blue pb-2">PROFESSIONAL SUMMARY</h3>
+                    <p class="mt-4 text-gray-700 leading-relaxed">
+                        Compassionate and detail-oriented healthcare professional with over 5 years of experience in patient care, case management, and medical administration, complemented by a distinguished 15-year background in law enforcement and emergency services. Proven ability to manage complex caseloads, collaborate with multidisciplinary teams, and provide exceptional care in high-pressure environments. A dynamic communicator dedicated to advocating for patient well-being and connecting them with vital community resources.
+                    </p>
+                </section>
+
+                <div class="mt-12 md:grid md:grid-cols-2 md:gap-x-12">
+                    <div class="md:col-span-1">
+                        <section>
+                            <h3 class="text-3xl font-bold text-regular-blue border-b-4 border-regular-blue pb-2">EDUCATION</h3>
+                            <div class="mt-4 space-y-4">
+                                <div>
+                                    <h4 class="text-xl font-bold text-gray-800">Certified Nursing Assistant (CNA) - 2022</h4>
+                                    <p class="text-gray-600">Wenatchee Valley College - Wenatchee, WA</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-gray-800">Certified Phlebotomist - 2017</h4>
+                                    <p class="text-gray-600">Phlebotomy Training Specialists - Tukwila, WA</p>
+                                </div>
+                                 <div>
+                                    <h4 class="text-xl font-bold text-gray-800">High School Diploma - 2000</h4>
+                                    <p class="text-gray-600">Waterville School District - Waterville, WA</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                     <div class="md:col-span-1 mt-12 md:mt-0">
+                        <section>
+                             <h3 class="text-3xl font-bold text-regular-blue border-b-4 border-regular-blue pb-2">WORK HISTORY</h3>
+                             <div class="mt-4 space-y-6 work-history-container">
+                                 <!-- Job entries will be populated here by JS -->
+                             </div>
+                         </section>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- DATA ---
+            const skillsData = [
+                {
+                    title: 'Case Management & Advocacy',
+                    details: 'Community Resource Coordination, Patient & Family Education, Treatment Planning, Crisis Intervention, Collaborative Care'
+                },
+                {
+                    title: 'Clinical & Medical',
+                    details: 'Patient Assessment, Vitals, Medication Administration, Activities of Daily Living (ADL) Assistance, Phlebotomy, Infection Control'
+                },
+                {
+                    title: 'Administrative & Technical',
+                    details: 'Medical Records Management (EHR), Data Entry & Accuracy, Emergency Dispatch Systems, Report Drafting & Documentation'
+                }
+            ];
+
+            const workHistory = [
+                {
+                    title: "Case Manager",
+                    company: "Yakima Valley Recovery",
+                    location: "Yakima, WA",
+                    date: "Sep 2024 – Present",
+                    duties: ["Manages caseload of 20 adults, ensuring comprehensive community-based care.", "Fosters partnerships with community organizations.", "Educates patients and families on treatment options to reduce hospital resource use.", "Collaborates with interdisciplinary teams for coordinated care."]
+                },
+                {
+                    title: "CNA / Med Tech",
+                    company: "Avamere at Wenatchee",
+                    location: "Wenatchee, WA",
+                    date: "Apr 2024 – Jul 2024",
+                    duties: ["Provided nursing care and administered medications under RN supervision.", "Assisted patients with ADLs, promoting independence.", "Monitored dietary intake to help patients meet wellness goals."]
+                },
+                {
+                    title: "CNA / Med Tech",
+                    company: "Regency",
+                    location: "Wenatchee, WA",
+                    date: "Nov 2023 – Apr 2024",
+                    duties: ["Maintained high standard of individualized care for a 60-bed unit.", "Provided direct, hands-on nursing care per care plans.", "Promptly responded to call lights to ensure patient comfort and safety."]
+                },
+                {
+                    title: "CNA / Med Tech",
+                    company: "Confluence Health Hospital",
+                    location: "Wenatchee, WA",
+                    date: "Nov 2022 – Oct 2023",
+                    duties: ["Cared for patients with complex diagnoses like respiratory failure and diabetes.", "Assisted with ADLs and monitored nutrition.", "Ensured a safe environment by responding promptly to patient needs."]
+                },
+                {
+                    title: "Emergency Services Dispatcher",
+                    company: "Rivercom 911",
+                    location: "Wenatchee, WA",
+                    date: "Sep 2006 – Aug 2021",
+                    duties: ["Prioritized and dispatched emergency calls for police, fire, and EMS.", "Relayed critical real-time information to first responders.", "Recorded vital details in call tracking systems."]
+                },
+                {
+                    title: "Reserve Deputy Sheriff",
+                    company: "Douglas County Sheriff",
+                    location: "East Wenatchee, WA",
+                    date: "Jul 2002 – Aug 2014",
+                    duties: ["Authored hundreds of detailed incident reports.", "Conducted investigations, gathered evidence, and interviewed witnesses.", "Testified under oath in court proceedings."]
+                }
+            ];
+
+            // --- SKILLS SECTION ---
+            const skillsContainer = document.getElementById('skills-container');
+            if (skillsContainer) {
+                skillsData.forEach(skill => {
+                    const card = document.createElement('div');
+                    card.className = 'skill-card bg-gray-900 bg-opacity-25 rounded-lg p-3 transition-all duration-300';
+                    card.innerHTML = `
+                        <div class="flex justify-between items-center font-bold">
+                            <span>${skill.title}</span>
+                            <span class="arrow text-gray-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </div>
+                        <div class="details hidden pt-2 mt-2 border-t border-gray-500">
+                            <p class="text-gray-300 text-sm">${skill.details}</p>
+                        </div>
+                    `;
+                    skillsContainer.appendChild(card);
+                });
+
+                skillsContainer.addEventListener('click', (e) => {
+                    const card = e.target.closest('.skill-card');
+                    if (card) {
+                        card.classList.toggle('open');
+                        const details = card.querySelector('.details');
+                        details.classList.toggle('hidden');
+                    }
+                });
+            }
+
+
+            // --- WORK HISTORY SECTION ---
+            const workContainer = document.querySelector('.work-history-container');
+            if (workContainer) {
+                 workHistory.forEach((job, index) => {
+                    const entry = document.createElement('div');
+                    entry.className = 'job-entry';
+                    const dutiesList = job.duties.map(duty => `<li class="text-gray-700 leading-relaxed">${duty}</li>`).join('');
+
+                    entry.innerHTML = `
+                        <h3 class="flex justify-between items-center text-xl font-bold text-gray-800 p-2 rounded-md hover:bg-gray-200">
+                            <span>${job.title}</span>
+                            <span class="arrow text-regular-blue ${index > 0 ? 'collapsed' : ''}">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </h3>
+                        <div class="details ${index > 0 ? 'hidden' : ''} pl-2">
+                             <p class="text-md font-medium text-gray-600">${job.company}</p>
+                             <p class="text-sm text-gray-500 italic mb-2">${job.date} • ${job.location}</p>
+                            <ul class="list-disc list-inside space-y-2">
+                               ${dutiesList}
+                            </ul>
+                        </div>
+                    `;
+                    workContainer.appendChild(entry);
+                });
+
+                workContainer.addEventListener('click', (e) => {
+                    const header = e.target.closest('.job-entry h3');
+                     if(header) {
+                        const details = header.nextElementSibling;
+                        details.classList.toggle('hidden');
+                        header.querySelector('.arrow').classList.toggle('collapsed');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
